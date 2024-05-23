@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Hydrocharge2.0",
-    "slug": "Hydrocharge2.0",
+    "name": "Hydrocharge",
+    "slug": "Hydrocharge",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,17 +11,27 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ruiaqf.Hydrocharge"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ruiaqf.Hydrocharge"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5cd6573c-1828-41d2-8d2c-9d835b418212"
+      }
     }
   }
 }
