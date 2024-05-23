@@ -18,11 +18,11 @@ export default function Statistics() {
   ];
   function getAlertColor(severity) {
     switch (severity) {
-      case 'high':
+      case 'Alto':
         return 'red';
-      case 'medium':
+      case 'Médio':
         return 'orange';
-      case 'low':
+      case 'Baixo':
         return 'green';
       default:
         return 'black';
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 10,
     backgroundColor: '#f8f8f8',
-  },
+    },
   problem: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -186,5 +186,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold', // Make the header cells bold
     color: '#fff', // Change the text color to white
+  },
+  cell: {
+    fontSize: 16,
+    color: '#fff',
   },
 });
