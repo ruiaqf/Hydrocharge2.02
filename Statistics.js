@@ -15,7 +15,9 @@ export default function Statistics() {
     {id: '7', problem: 'Erro no Sistema de Controlo', description: 'Ocorreu um erro no sistema de controle.', status: 'Resolvido', date: '2023-01-07', severity: 'Baixo'},
     {id: '8', problem: 'Flutuação na Produção de Energia', description: 'A produção de energia está a flutuar mais do que o esperado.', status: 'Monitorização', date: '2023-01-08', severity: 'Baixo'},
     // Adicione mais alertas aqui
+
   ];
+
   function getAlertColor(severity) {
     switch (severity) {
       case 'Alto':
@@ -23,11 +25,12 @@ export default function Statistics() {
       case 'Médio':
         return 'orange';
       case 'Baixo':
-        return 'green';
+        return '#30F31E';
       default:
         return 'black';
     }
   }
+  
   useEffect(() => {
     if (isUpdating) {
       const interval = setInterval(() => {
@@ -100,14 +103,16 @@ export default function Statistics() {
 <Text style={{...styles.centeredText, backgroundColor: "#ff4545"}}>Alertas</Text>
 
 {alerts.map(alert => (
-    <View key={alert.id} style={[styles.row, {backgroundColor: getAlertColor(alert.severity)}]}>
-      <Text style={styles.cell}><Text style={styles.title}>Problema:</Text> {alert.problem}</Text>
-      <Text style={styles.cell}><Text style={styles.title}>Descrição:</Text> {alert.description}</Text>
-      <Text style={styles.cell}><Text style={styles.title}>Estado:</Text> {alert.status}</Text>
-      <Text style={styles.cell}><Text style={styles.title}>Data:</Text> {alert.date}</Text>
-    </View>
-  ))}
+  <View key={alert.id} style={[styles.row, {backgroundColor: "#235b6f"}]}>
+  <Text style={[styles.cell, {color: getAlertColor(alert.severity)}]}>
+    <Text style={styles.title}>Problema:</Text> {String(alert.problem)}
+  </Text>
+  <Text style={styles.cell}><Text style={styles.title}>Descrição:</Text> {String(alert.description)}</Text>
+  <Text style={styles.cell}><Text style={styles.title}>Estado:</Text> {String(alert.status)}</Text>
+  <Text style={styles.cell}><Text style={styles.title}>Data:</Text> {String(alert.date)}</Text>
 </View>
+  ))}
+  </View>
 </ScrollView>
   
   );

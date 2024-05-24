@@ -11,7 +11,7 @@ export default function App({ navigation }) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [menuAnimation] = useState(new Animated.Value(0)); // initial hidden state
   const [showText, toggleText] = useState(false);
-  const [unit, setUnit] = useState('kWh');
+  const [unit, setUnit] = useState('');
 
   const toggleMenu = () => {
     if (isAnimating) return; // prevent starting a new animation while one is in progress
@@ -42,12 +42,12 @@ export default function App({ navigation }) {
         <Text style={styles.text}>{energySpent} {unit}</Text>
       </View>
       <View style={styles.menuContainer}>
-      <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => {setEnergySpent(20); setSelectedBox('Energia gasta');toggleText(false);setUnit('kWh');}}>
+      <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => {setEnergySpent(20); setSelectedBox('Energia gasta');toggleText(false);setUnit('kW');}}>
         {selectedBox === 'Energia gasta' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}        
         <Image source={require('./assets/energia_gasta3.png')} style={styles.boxImage} />
         <Text style={styles.smallText}>Energia gasta</Text>
       </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => {setEnergySpent(30); setSelectedBox('Energia em Stock');toggleText(false);setUnit('kWh');}}>
+      <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => {setEnergySpent(30); setSelectedBox('Energia em Stock');toggleText(false);setUnit('kW');}}>
         {selectedBox === 'Energia em Stock' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}        
         <Image source={require('./assets/energia_stock.png')} style={styles.boxImage} />
         <Text style={styles.smallText}>Energia em Stock</Text>

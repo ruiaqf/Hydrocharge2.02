@@ -48,6 +48,8 @@ export default function AccountDetails() {
         <TextInput
           style={styles.input}
           value={value}
+          placeholder="Insira aqui os seus dados"
+          underlineColorAndroid='transparent'
           onChangeText={text => {
             if (key === 'Utilizador') {
               setUser(text);
@@ -76,15 +78,17 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: '#235b6f',
-    alignItems: 'center',
+    alignItems: 'start',
+    padding: 30,
   },
   logoContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
-    width: 500,
-    height: 500,
+    width: 600,
+    height: 600,
   },
   contactsContainer: {
     flex: 2,
@@ -99,24 +103,25 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
     marginBottom: 10,
-  },
+    paddingRight: 0,
+
+    },
   linkText: {
     fontSize: 18,
     color: '#fff',
     marginBottom: 10,
-    textDecorationLine: 'underline',
+
   },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'justify',
     marginBottom: 10,
   },
   input: {
     flex: 1,
-    marginLeft: 10,
     fontSize: 18,
     color: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#fff',
+    paddingRight: 1,
+    marginLeft: 10,
   },
 });
