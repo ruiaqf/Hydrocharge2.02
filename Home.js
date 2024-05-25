@@ -26,7 +26,6 @@ export default function App({ navigation }) {
       setIsAnimating(false);
     });
   };
-
   const Separator = () => (
     <View style={styles.separator} />
   );
