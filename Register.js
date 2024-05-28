@@ -1,47 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet,Image, Alert } from 'react-native';
-import * as SQLite from 'expo-sqlite';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image, Alert } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-const db = SQLite.openDatabase('db.db');
 
-export default function Register({navigation}) {
+export default function Register({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState(''); // New state for password confirmation
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const auth = getAuth();
 
-  useEffect(() => {
-    db.transaction(tx => {
-      tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT);'
-      );
-    });
-  }, []);
-
-  const register = () => {
-    if (password !== confirmPassword) {
-      Alert.alert("Erro", "As senhas não correspondem. Por favor, tente novamente.");
-      return;
+  const registerUser = async (email, password) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      // Navigate to Home page
+      navigation.navigate('ButtonGrid');
+    } catch (error) {
+      console.error('Error registering user:', error);
+      throw error;
     }
-    db.transaction(tx => {
-      tx.executeSql(
-        'INSERT INTO users (email, password) VALUES (?, ?)',
-        [email, password],
-        () => {
-          Alert.alert('Successo', 'Utilizador registado com sucesso');
-          navigation.navigate('Login');
-        },
-        (_, error) => {
-            console.log('Database error:', error);
-            Alert.alert('Erro na base de dados', 'Ocorreu um erro');
-          }
-      );
-    });
   };
 
   return (
     <View style={styles.container}>
-      <Image 
+      <Image
         style={styles.logo}
         source={require('./assets/HYDRO2.png')} // Replace with the path to your logo
         resizeMode='center' // This will ensure the entire logo is visible
@@ -66,15 +49,17 @@ export default function Register({navigation}) {
         onChangeText={setConfirmPassword}
         value={confirmPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={register}>
-        <Text style={styles.buttonText}>Registar</Text>
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.infoButton} 
-        onPress={() => Alert.alert(
-          "Information", 
-          "O email que usa para se registar deve ser o mesmo que usou na compra do HydroCharge."
-        )}
+      <TouchableOpacity style={styles.button} onPress={() => registerUser(email, password)}>
+  <Text style={styles.buttonText}>Registar</Text>
+</TouchableOpacity>
+      <TouchableOpacity
+        style={styles.infoButton}
+        onPress={() =>
+          Alert.alert(
+            "Information",
+            "O email que usa para se registar deve ser o mesmo que usou na compra do HydroCharge."
+          )
+        }
       >
         <Ionicons name="information-circle-outline" size={24} color="black" />
       </TouchableOpacity>

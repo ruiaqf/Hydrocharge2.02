@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "48974117172",
+    "project_id": "hydrocharge2",
+    "storage_bucket": "hydrocharge2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48974117172:android:f4ef552a5fcb56696ecd61",
+        "android_client_info": {
+          "package_name": "com.ruiaqf.Hydrocharge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2--SfIm7OaZoNtHzFklVIBKr8JUNK2D8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

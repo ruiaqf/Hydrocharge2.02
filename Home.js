@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Button, Dimensions } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
@@ -12,6 +12,7 @@ export default function App({ navigation }) {
   const [menuAnimation] = useState(new Animated.Value(0)); // initial hidden state
   const [showText, toggleText] = useState(false);
   const [unit, setUnit] = useState('');
+
 
   const toggleMenu = () => {
     if (isAnimating) return; // prevent starting a new animation while one is in progress
@@ -26,6 +27,7 @@ export default function App({ navigation }) {
       setIsAnimating(false);
     });
   };
+
   const Separator = () => (
     <View style={styles.separator} />
   );
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     width: 400,
-    height: 100,
+    height: 200,
     marginTop: 50,
   },
   square: {
@@ -144,8 +146,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   text: {
-    fontSize: 40,
+    fontSize: 30,
     color: 'white',
+    alignItems: 'justify',
   },
   menuContainer: {
     flexDirection: 'row',

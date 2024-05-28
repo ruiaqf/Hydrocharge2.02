@@ -1,7 +1,9 @@
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState, useEffect } from 'react';
-import { getUserEmail } from './db.js';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+
 
 let date = new Date();
 let formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
@@ -11,9 +13,17 @@ export default function AccountDetails() {
   const [user, setUser] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-
+  const auth = getAuth(); // Get the authentication instance
   useEffect(() => {
-    getUserEmail(1, setEmail);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setEmail(user.email);
+        console.log('Current user email:', user.email);
+      } else {
+        console.log('No user is currently logged in');
+      }
+    });
+
     AsyncStorage.getItem('user').then(value => setUser(value || ''));
     AsyncStorage.getItem('phone').then(value => setPhone(value || ''));
     AsyncStorage.getItem('address').then(value => setAddress(value || ''));
