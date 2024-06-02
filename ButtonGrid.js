@@ -12,7 +12,9 @@ const ButtonGrid = ({ navigation }) => {
       <View style={styles.row}>
         <LinearGradient
           // Button Linear Gradient
-          colors={['#0097b2', '#7ed957']}
+          colors={['#7ed957', '#0097b2']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
           style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('Statistics')}>
             <Image source={require('./assets/bar-chart.png')} style={styles.buttonImage} />
@@ -21,7 +23,9 @@ const ButtonGrid = ({ navigation }) => {
         </LinearGradient>
         <LinearGradient
           // Button Linear Gradient
-          colors={['#0097b2', '#7ed957']}
+          colors={['#7ed957', '#0097b2']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
           style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('AccountDetails')}>
             <Image source={require('./assets/user.png')} style={styles.buttonImage} />
@@ -32,7 +36,9 @@ const ButtonGrid = ({ navigation }) => {
       <View style={styles.row}>
         <LinearGradient
           // Button Linear Gradient
-          colors={['#0097b2', '#7ed957']}
+          colors={['#7ed957', '#0097b2']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
           style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Image source={require('./assets/data-management.png')} style={styles.buttonImage} />
@@ -41,7 +47,9 @@ const ButtonGrid = ({ navigation }) => {
         </LinearGradient>
         <LinearGradient
           // Button Linear Gradient
-          colors={['#0097b2', '#7ed957']}
+          colors={['#7ed957', '#0097b2']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
           style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('Alerts')}>
             <Image source={require('./assets/warning-sign.png')} style={styles.buttonImage} />
@@ -52,7 +60,9 @@ const ButtonGrid = ({ navigation }) => {
       <View style={styles.row}>
         <LinearGradient
           // Button Linear Gradient
-          colors={['#0097b2', '#7ed957']}
+          colors={['#7ed957', '#0097b2']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
           style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('Information')}>
             <Image source={require('./assets/info.png')} style={styles.buttonImage} />
@@ -61,7 +71,9 @@ const ButtonGrid = ({ navigation }) => {
         </LinearGradient>
         <LinearGradient
           // Button Linear Gradient
-          colors={['#0097b2', '#7ed957']}
+          colors={['#7ed957', '#0097b2']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
           style={styles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('Contacts')}>
             <Image source={require('./assets/phone.png')} style={styles.buttonImage} />
@@ -108,7 +120,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonText: {
-    color: '#24596C',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',
