@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, ImageBackground, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import * as SQLite from 'expo-sqlite';
+import ImageView from 'react-native-image-zoom-viewer';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Information() {
   const navigation = useNavigation();
@@ -9,33 +10,11 @@ export default function Information() {
   const [monthly, setMonthly] = useState(0);
   const [yearly, setYearly] = useState(0);
 
-  useEffect(() => {
-    const db = SQLite.openDatabase('db.db');
-
-    db.transaction((tx) => {
-      tx.executeSql('SELECT monthly FROM savings', [], (_, { rows: { _array } }) => {
-        setSavings(_array[0].Savings);
-      });
-    });
-    db.transaction((tx) => {
-      tx.executeSql('SELECT monthly FROM savings', [], (_, { rows: { _array } }) => {
-        setMonthly(_array[0].Monthly);
-      });
-    }
-    );
-    db.transaction((tx) => {
-      tx.executeSql('SELECT yearly FROM savings', [], (_, { rows: { _array } }) => {
-        setYearly(_array[0].Yearly);
-      });
-    }
-    );
-  }, []);
-
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.logoContainer}>
-          <Image 
+          <Image
             style={styles.logo}
             source={require('./assets/HYDRO2.png')}
             resizeMode='contain'
@@ -48,8 +27,8 @@ export default function Information() {
             Aqui, encontrará detalhes sobre o uso da água para ter uma melhor noção dos gastos e uma gestão mais cuidada, os benefícios da energia hidrelétrica e muito mais.
           </Text>
           <Text style={styles.text}>Esperamos que encontre as informações aqui encontradas úteis e informativas. Se tiver alguma dúvida ou comentário, não hesite em nos contactar.</Text>
-          <Button 
-            title="Contacte-nos" 
+          <Button
+            title="Contacte-nos"
             onPress={() => navigation.navigate('Contacts')}
           />
         </View>
@@ -57,8 +36,8 @@ export default function Information() {
         <View style={styles.infoContainer}>
           <Text style={styles.title}>Alguns sítios onde encontra o HydroCharge</Text>
           <View style={styles.mapContainer}>
-            <ImageBackground 
-              source={require('./assets/map.png')} 
+            <ImageBackground
+              source={require('./assets/map.png')}
               style={styles.map}
               resizeMode="contain"
             >
@@ -76,21 +55,21 @@ export default function Information() {
           </View>
         </View>
         <View style={styles.infoContainer}>
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Água Poupada</Text>
-        <Text style={styles.cardValue}>{savings} litros</Text>
-      </View>
+          <View style={styles.card}>
+            <Text style={styles.cardTitle}>Água Poupada</Text>
+            <Text style={styles.cardValue}>{savings} litros</Text>
+          </View>
 
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Energia Poupada</Text>
-        <Text style={styles.cardValue}>{monthly} kWh</Text>
-      </View>
+          <View style={styles.card}>
+            <Text style={styles.cardTitle}>Energia Poupada</Text>
+            <Text style={styles.cardValue}>{monthly} kWh</Text>
+          </View>
 
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>CO2 Poupado</Text>
-        <Text style={styles.cardValue}>{yearly} toneladas</Text>
-      </View>
-    </View>
+          <View style={styles.card}>
+            <Text style={styles.cardTitle}>CO2 Poupado</Text>
+            <Text style={styles.cardValue}>{yearly} toneladas</Text>
+          </View>
+        </View>
       </ScrollView>
     </View>
   );
@@ -99,7 +78,7 @@ export default function Information() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#235b6f',
+    backgroundColor: '#5e6268',
     alignItems: 'center',
     padding: 10,
   },
@@ -155,7 +134,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
-    shadowRadius: 2,  
+    shadowRadius: 2,
     elevation: 5
   },
   cardTitle: {

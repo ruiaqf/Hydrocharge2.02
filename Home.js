@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Button, Dimensions } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App({ navigation }) {
   //const energySpent = 10; // Replace this with the actual value
@@ -16,7 +16,7 @@ export default function App({ navigation }) {
 
   const toggleMenu = () => {
     if (isAnimating) return; // prevent starting a new animation while one is in progress
-  
+
     setIsAnimating(true);
     Animated.timing(menuAnimation, {
       toValue: menuVisible ? -500 : 0, // show or hide
@@ -43,65 +43,65 @@ export default function App({ navigation }) {
         <Text style={styles.text}>{energySpent} {unit}</Text>
       </View>
       <View style={styles.menuContainer}>
-      <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => {setEnergySpent(20); setSelectedBox('Energia gasta');toggleText(false);setUnit('kW');}}>
-        {selectedBox === 'Energia gasta' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}        
-        <Image source={require('./assets/energia_gasta3.png')} style={styles.boxImage} />
-        <Text style={styles.smallText}>Energia gasta</Text>
-      </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => {setEnergySpent(30); setSelectedBox('Energia em Stock');toggleText(false);setUnit('kW');}}>
-        {selectedBox === 'Energia em Stock' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}        
-        <Image source={require('./assets/energia_stock.png')} style={styles.boxImage} />
-        <Text style={styles.smallText}>Energia em Stock</Text>
-      </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => {setEnergySpent(40); setSelectedBox('Fluxo');toggleText(true);setUnit('L');}}>
-        {selectedBox === 'Fluxo' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}
-        <Image source={require('./assets/fluxo.png')} style={styles.boxImage} />
-        <Text style= {styles.smallText}> Fluxo </Text>
+        <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => { setEnergySpent(20); setSelectedBox('Energia gasta'); toggleText(false); setUnit('kW'); }}>
+          {selectedBox === 'Energia gasta' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}
+          <Image source={require('./assets/energia_gasta3.png')} style={styles.boxImage} />
+          <Text style={styles.smallText}>Energia gasta</Text>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => { setEnergySpent(30); setSelectedBox('Energia em Stock'); toggleText(false); setUnit('kW'); }}>
+          {selectedBox === 'Energia em Stock' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}
+          <Image source={require('./assets/energia_stock.png')} style={styles.boxImage} />
+          <Text style={styles.smallText}>Energia em Stock</Text>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={styles.menuItem} onPress={() => { setEnergySpent(40); setSelectedBox('Fluxo'); toggleText(true); setUnit('L'); }}>
+          {selectedBox === 'Fluxo' && <MaterialIcons name="arrow-drop-down" size={50} color="#80a729" />}
+          <Image source={require('./assets/fluxo.png')} style={styles.boxImage} />
+          <Text style={styles.smallText}> Fluxo </Text>
+        </TouchableOpacity>
+      </View>
+      {menuVisible && (
+        <Animated.View style={[styles.menu, { bottom: menuAnimation }]}>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Informações"
+              color="#44c767"
+              onPress={() => navigation.navigate('Information')}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Estatísticas"
+              color="#44c767"
+              onPress={() => navigation.navigate('Statistics')}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Detalhes da Conta"
+              color="#44c767"
+              onPress={() => navigation.navigate('AccountDetails')}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Contactos"
+              color="#44c767"
+              onPress={() => navigation.navigate('Contacts')}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Terminar Sessão"
+              color="#44c767"
+              onPress={() => navigation.navigate('Login')}
+            />
+          </View>
+        </Animated.View>
+      )}
+      <TouchableOpacity style={[styles.button, styles.menuBar]} onPress={toggleMenu}>
+        <Image source={require('./assets/Hamburger_icon.png')} style={styles.menuIcon} />
       </TouchableOpacity>
     </View>
-    {menuVisible && (
-      <Animated.View style={[styles.menu, { bottom: menuAnimation }]}>
-        <View style={styles.buttonContainer}>
-        <Button
-        title="Informações"
-        color="#44c767"
-        onPress={() => navigation.navigate('Information')}
-        />
-        </View>
-        <View style={styles.buttonContainer}>
-        <Button
-        title="Estatísticas"
-        color="#44c767"
-        onPress={() => navigation.navigate('Statistics')}
-        />
-        </View>
-        <View style={styles.buttonContainer}>
-        <Button
-        title="Detalhes da Conta"
-        color="#44c767"
-        onPress={() => navigation.navigate('AccountDetails')}
-        />
-        </View>
-        <View style={styles.buttonContainer}>
-        <Button
-        title="Contactos"
-        color="#44c767"
-        onPress={() => navigation.navigate('Contacts')}
-        />
-        </View>
-        <View style={styles.buttonContainer}>
-        <Button
-        title="Terminar Sessão"
-        color="#44c767"
-        onPress={() => navigation.navigate('Login')}
-        />
-        </View>
-      </Animated.View>
-    )}
-  <TouchableOpacity style={[styles.button, styles.menuBar]} onPress={toggleMenu}>
-  <Image source={require('./assets/Hamburger_icon.png')} style={styles.menuIcon} />
-  </TouchableOpacity>
-</View>
   );
 }
 
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#235b6f',
+    backgroundColor: '#5e6268',
     alignItems: 'center',
     justifyContent: 'center',
   },

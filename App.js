@@ -11,6 +11,7 @@ import React from 'react';
 import Alerts from './Alerts';
 import { initializeApp } from 'firebase/app';
 import ButtonGrid from './ButtonGrid';
+import DeletedAlerts from './DeletedAlerts';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAwv1sAIQ7OSie5rclJpLU2v2ISNjcfaX4",
@@ -39,6 +40,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
         <Stack.Screen name="Alerts" component={Alerts} options={{ headerShown: false }}/>
+        <Stack.Screen name="DeletedAlerts" component={DeletedAlerts} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

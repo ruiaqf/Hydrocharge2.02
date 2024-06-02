@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image, Alert } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 export default function Register({ navigation }) {
@@ -27,7 +28,7 @@ export default function Register({ navigation }) {
       <Image
         style={styles.logo}
         source={require('./assets/HYDRO2.png')} // Replace with the path to your logo
-        resizeMode='center' // This will ensure the entire logo is visible
+        resizeMode='contain' // This will ensure the entire logo is visible
       />
       <TextInput
         style={styles.input}
@@ -49,9 +50,14 @@ export default function Register({ navigation }) {
         onChangeText={setConfirmPassword}
         value={confirmPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={() => registerUser(email, password)}>
-  <Text style={styles.buttonText}>Registar</Text>
-</TouchableOpacity>
+      <LinearGradient
+        // Button Linear Gradient
+        colors={['#0097b2', '#7ed957']}
+        style={styles.button}>
+        <TouchableOpacity onPress={() => registerUser(email, password)}>
+          <Text style={styles.buttonText}>Registar</Text>
+        </TouchableOpacity>
+      </LinearGradient>
       <TouchableOpacity
         style={styles.infoButton}
         onPress={() =>
@@ -72,52 +78,53 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 30,
-    backgroundColor: '#235b6f',
+    backgroundColor: '#5e6268',
   },
-
   input: {
-      height: 40,
-      width: '90%', // Reduce the width of the input boxes to 90% of the container's width
-      borderColor: 'gray',
-      backgroundColor: 'white', // Set the background color of the input boxes to white
-      borderWidth: 1,
-      borderRadius: 30,
-      marginBottom: 12,
-      paddingLeft: 8,
-      alignSelf: 'center', // Center the input boxes
-    },
-    buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    button: {
-      backgroundColor: '#44c767',
-      padding: 5,
-      margin: 20,
-      width: '30%', // adjust this as needed
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 20,
-    },
-    buttonText: {
-      color: 'white',
-      fontSize: 18,
-    },
-    logo: {
-      width: 500, // Set the width of the logo
-      height: 200, // Set the height of the logo
-      marginBottom: 0, // Add some margin at the bottom of the logo
-      alignSelf: 'center', // Center the logo
-    },
-    infoButton: {
-      width: 50,
-      height: 50,
-      borderRadius: 25,
-      backgroundColor: '#44c767',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'absolute', // Posiciona o botão no canto inferior direito
-      right: 20,
-      bottom: 20,
-    },
-  });
+    height: 50,
+    width: '100%', // Reduce the width of the input boxes to 90% of the container's width
+    borderColor: 'gray',
+    backgroundColor: 'white', // Set the background color of the input boxes to white
+    borderWidth: 1,
+    borderRadius: 30,
+    marginBottom: 12,
+    paddingLeft: 8,
+    alignSelf: 'center', // Center the input boxes
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  button: {
+    backgroundColor: '#DCEADB',
+    padding: 5,
+    margin: 10,
+    width: '40%', // adjust this as needed
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  logo: {
+    width: 350, // Set the width of the logo
+    height: 150, // Set the height of the logo
+    marginBottom: 40, // Add some margin at the bottom of the logo
+    alignSelf: 'center', // Center the logo
+  },
+  infoButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#44c767',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute', // Posiciona o botão no canto inferior direito
+    right: 20,
+    bottom: 20,
+  },
+});

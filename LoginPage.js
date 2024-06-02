@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Image, TextInput, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import { View, Image, TextInput, TouchableOpacity, Text, StyleSheet, Alert, ImageBackground } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -37,12 +38,22 @@ export default function Login({ navigation }) {
       <TextInput placeholder="Email" style={styles.input} onChangeText={setEmail} value={email} />
       <TextInput placeholder="Palavra-Passe" style={styles.input} secureTextEntry={true} onChangeText={setPassword} value={password} />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
-          <Text style={styles.buttonText}>Registar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={login}>
-          <Text style={styles.buttonText}>Seguinte</Text>
-        </TouchableOpacity>
+        <LinearGradient
+          // Button Linear Gradient
+          colors={['#0097b2', '#7ed957']}
+          style={styles.button}>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.buttonText}>Registar</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+        <LinearGradient
+          // Button Linear Gradient
+          colors={['#0097b2', '#7ed957']}
+          style={styles.button}>
+          <TouchableOpacity onPress={login}>
+            <Text style={styles.buttonText}>Seguinte</Text>
+          </TouchableOpacity>
+        </LinearGradient>
       </View>
     </View>
   );
@@ -54,7 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#235b6f',
+    backgroundColor: '#5e6268',
   },
   logo: {
     width: 350, // Set the width of the logo
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    backgroundColor: '#44c767',
+    backgroundColor: '#DCEADB',
     padding: 5,
     margin: 10,
     width: '40%', // adjust this as needed
@@ -88,7 +99,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   buttonText: {
-    color: 'white',
+    color: '#ffffff',
+    fontWeight: 'bold',
     fontSize: 18,
   },
 });
